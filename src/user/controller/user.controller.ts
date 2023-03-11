@@ -142,12 +142,14 @@ export class UserController {
       );
   }
 
-  @Get('profile-image/:imagename')
-  findProfileImage(
-    @Param('imagename') imagename,
-    @Res() res,
-    // eslint-disable-next-line @typescript-eslint/ban-types
-  ): Observable<Object> {
-    return of(res.sendFile(join(process.cwd(), '/tmp' + imagename)));
-  }
+  // @Get('profile-image/:imagename')
+  // findProfileImage(
+  //   @Param('imagename') imagename,
+  //   @Res() res,
+  // // eslint-disable-next-line @typescript-eslint/ban-types
+  // ): Observable<Object> {
+  //   return of(
+  //     res.sendFile(join(process.cwd(), 'uploads/profileimages/' + imagename)),
+  //   );
+  // }
 }

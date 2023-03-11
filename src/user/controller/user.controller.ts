@@ -146,10 +146,8 @@ export class UserController {
   findProfileImage(
     @Param('imagename') imagename,
     @Res() res,
-  // eslint-disable-next-line @typescript-eslint/ban-types
+    // eslint-disable-next-line @typescript-eslint/ban-types
   ): Observable<Object> {
-    return of(
-      res.sendFile(join(process.cwd(), 'uploads/profileimages/' + imagename)),
-    );
+    return of(res.sendFile(join(process.cwd(), '/tmp' + imagename)));
   }
 }

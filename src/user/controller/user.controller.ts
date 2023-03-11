@@ -35,19 +35,19 @@ import { UserIsUserGuard } from 'src/auth/guards/UserIsUser.guard';
 
 import 'multer';
 
-export const storage = {
-  storage: diskStorage({
-    destination: './tmp',
-    filename: (req, file, cb) => {
-      const filename: string =
-        path.parse(file.originalname).name.replace(/\s/g, '') + uuidv4();
-      const extension: string = path.parse(file.originalname).ext;
+// export const storage = {
+//   storage: diskStorage({
+//     destination: './uploads/profileimages',
+//     filename: (req, file, cb) => {
+//       const filename: string =
+//         path.parse(file.originalname).name.replace(/\s/g, '') + uuidv4();
+//       const extension: string = path.parse(file.originalname).ext;
 
-      cb(null, `${filename}${extension}`);
-    },
-  }),
-  // eslint-disable-next-line prettier/prettier
-};
+//       cb(null, `${filename}${extension}`);
+//     },
+//   }),
+//   // eslint-disable-next-line prettier/prettier
+// };
 @Controller('user')
 export class UserController {
   constructor(
@@ -127,20 +127,20 @@ export class UserController {
     return this.userService.updateRoleOfUser(Number(id), user);
   }
 
-  @UseGuards(JwtAuthGuard)
-  @Post('upload')
-  @UseInterceptors(FileInterceptor('file', storage))
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  uploadFile(@UploadedFile() file, @Request() req): Observable<Object> {
-    const user: User = req.user;
+  // @UseGuards(JwtAuthGuard)
+  // @Post('upload')
+  // @UseInterceptors(FileInterceptor('file', storage))
+  // // eslint-disable-next-line @typescript-eslint/ban-types
+  // uploadFile(@UploadedFile() file, @Request() req): Observable<Object> {
+  //   const user: User = req.user;
 
-    return this.userService
-      .updateOne(user.id, { profileImage: file.filename })
-      .pipe(
-        tap((user: User) => console.log(user)),
-        map((user: User) => ({ profileImage: user.profileImage })),
-      );
-  }
+  //   return this.userService
+  //     .updateOne(user.id, { profileImage: file.filename })
+  //     .pipe(
+  //       tap((user: User) => console.log(user)),
+  //       map((user: User) => ({ profileImage: user.profileImage })),
+  //     );
+  // }
 
   // @Get('profile-image/:imagename')
   // findProfileImage(
